@@ -14,21 +14,25 @@
 #
 # Paths to utils
 #
-YOSYS=/opt/oss-cad-suite/bin/yosys
-NEXTPNR=/usr/local/bin/nextpnr-gowin
-OPENFPGALOADER=/opt/oss-cad-suite/bin/openFPGALoader
-PACKER=/home/romain/.local/bin/gowin_pack
+YOSYS=/CHANGEME/yosys
+NEXTPNR=/CHANGEME/nextpnr-gowin
+OPENFPGALOADER=/CHANGEME/openFPGALoader
+PACKER=/CHANGEME/gowin_pack
 #
 # Target configuration
 #
 DEVICE='GW1NR-LV9QN88PC6/I5'
 FAMILY='GW1N-9C'
 BOARD='tangnano9k'
-CST=${BOARD}.cst
+CST=${BOARD}.cst # Constraints file: mapping of board I/O, can be found in the apicula repo
 #
 # Basename for output files
+#
 BASENAME=blinky
 #
+# Path to libs
+#
+LIBDIR=
 ###############################################################################
 #
 # Internal variables, shouldn't be edited
@@ -37,8 +41,7 @@ JSON=${BASENAME}.json
 VOUT=${BASENAME}.vout
 PNR=${BASENAME}-pnr.json
 PACKED=${BASENAME}.bin
-
-#LIBS=ms_counter.v
+LIBS=$(wildcard ${LIBDIR}/*.v)
 
 .PHONY: default
 default: upload
